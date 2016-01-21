@@ -4,7 +4,16 @@ var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 var httpProxy = require('http-proxy');
 var fetch = require('isomorphic-fetch');
-import App from './components/App.js';
+
+
+//router
+import { match, RouterContext } from 'react-router'
+import {Router, Route, DefaultRoute, NotFoundRoute} from 'react-router';
+
+
+import routes from './components/Routes.js';
+
+
 
 
 //setup proxy
@@ -29,16 +38,8 @@ app.get('*', function (req, res) {
 
 
 
-			//createElement={createElement}
-	var markup = ReactDOMServer.renderToString(
-			<App radiumConfig={{userAgent: props.userAgent}} />
-	);
 
-	//pass rendered html out handlebars template along with props
-	//so client will have props too
-	res.render('index', {content: markup, props: JSON.stringify(props)})
 
-	/*
 	//set up routing with react-router
 	match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
 		if (error) {
@@ -49,18 +50,16 @@ app.get('*', function (req, res) {
 			//render up our html with react and props
 			var markup = ReactDOMServer.renderToString(
 				//createElement={createElement}
-				<RoutingContext  {...renderProps} />
+				<RouterContext {...renderProps} />
 			);
-
 			//pass rendered html out handlebars template along with props
 			//so client will have props too
-			res.render('index', {content: markup, props: JSON.stringify(props)});
+			res.render('index', {content: markup, props:JSON.stringify(props)});
 
 		} else {
 			res.status(404).send('Not found')
 		}
 	})
-	*/
 
 
 });

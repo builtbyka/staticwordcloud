@@ -1,8 +1,10 @@
 'use strict';
 
-var _App = require('./components/App.js');
+var _reactRouter = require('react-router');
 
-var _App2 = _interopRequireDefault(_App);
+var _Routes = require('./components/Routes.js');
+
+var _Routes2 = _interopRequireDefault(_Routes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12,6 +14,8 @@ var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 var httpProxy = require('http-proxy');
 var fetch = require('isomorphic-fetch');
+
+//router
 
 //setup proxy
 var proxy = httpProxy.createProxyServer();
@@ -32,34 +36,24 @@ app.get('*', function (req, res) {
 		userAgent: req.headers['user-agent'] //useful for some components to render
 	};
 
-	//createElement={createElement}
-	var markup = ReactDOMServer.renderToString(React.createElement(_App2.default, { radiumConfig: { userAgent: props.userAgent } }));
-
-	//pass rendered html out handlebars template along with props
-	//so client will have props too
-	res.render('index', { content: markup, props: JSON.stringify(props) });
-
-	/*
- //set up routing with react-router
- match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
- 	if (error) {
- 		res.status(500).send(error.message)
- 	} else if (redirectLocation) {
- 		res.redirect(302, redirectLocation.pathname + redirectLocation.search)
- 	} else if (renderProps) {
- 		//render up our html with react and props
- 		var markup = ReactDOMServer.renderToString(
- 			//createElement={createElement}
- 			<RoutingContext  {...renderProps} />
- 		);
- 			//pass rendered html out handlebars template along with props
- 		//so client will have props too
- 		res.render('index', {content: markup, props: JSON.stringify(props)});
- 		} else {
- 		res.status(404).send('Not found')
- 	}
- })
- */
+	//set up routing with react-router
+	(0, _reactRouter.match)({ routes: _Routes2.default, location: req.url }, function (error, redirectLocation, renderProps) {
+		if (error) {
+			res.status(500).send(error.message);
+		} else if (redirectLocation) {
+			res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+		} else if (renderProps) {
+			//render up our html with react and props
+			var markup = ReactDOMServer.renderToString(
+			//createElement={createElement}
+			React.createElement(_reactRouter.RouterContext, renderProps));
+			//pass rendered html out handlebars template along with props
+			//so client will have props too
+			res.render('index', { content: markup, props: JSON.stringify(props) });
+		} else {
+			res.status(404).send('Not found');
+		}
+	});
 });
 
 //Example reverse proxy call

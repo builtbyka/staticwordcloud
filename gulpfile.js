@@ -47,9 +47,9 @@ gulp.task('app',  function () {
 	.pipe(babel())
 	.pipe(sourcemaps.write('.', {
 		includeContent: false,
-		sourceRoot: '.'
+		sourceRoot: './'
 	}))
-	.pipe(rename('server.js'))
+	//.pipe(rename('server.js'))
 	.pipe(gulp.dest('.'));
 });
 

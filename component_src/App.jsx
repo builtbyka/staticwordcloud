@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 class App extends React.Component {
 
@@ -12,7 +13,14 @@ class App extends React.Component {
 		console.log('Hello World');
 
 		return (
-			<div>Hello World</div>
+			<div>
+				<div>Hello World</div>
+				<ul>
+					<li><Link to='/viewa'>Link to A</Link></li>
+					<li><Link to='/viewb'>Link to B</Link></li>
+				</ul>
+				{this.props.children}
+			</div>
 		)
 	}
 }

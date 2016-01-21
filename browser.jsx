@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.js';
+import Routes from './components/Routes.js';
+import {Router, Route, browserHistory} from 'react-router';
 
 
 // This script will run in the browser and will render our component using the
@@ -12,4 +13,6 @@ import App from './components/App.js';
 var props = window.APP_PROPS;
 
 //Render application in browser
-ReactDOM.render(<App radiumConfig={{userAgent: props.userAgent}} />, document.getElementById('app'))
+ReactDOM.render(<Router history={browserHistory}>
+	{Routes}
+</Router>, document.getElementById('app'))
