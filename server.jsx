@@ -14,10 +14,9 @@ import {Router, Route, DefaultRoute, NotFoundRoute} from 'react-router';
 import routes from './components/Routes.js';
 
 
-
-
 //setup proxy
 var proxy = httpProxy.createProxyServer();
+
 
 
 //setup express
@@ -32,12 +31,18 @@ app.get('*', function (req, res) {
 	GLOBAL.navigator = {userAgent : req.headers['user-agent']};
 
 	//gather all props that'll be passed down into react both server and client side here
-	var props = {
+	var serverprops = {
+		message:'Hello World',
 		userAgent: req.headers['user-agent'] //useful for some components to render
 	};
 
-
-
+	//use this function to pass in props to
+	//the components being rendered in the routes.
+	var createElement = function(Component, props) {
+		// make sure you pass all the props in!
+		console.log('custom create element');
+		return <Component {...props} {...serverprops}/>
+	}
 
 
 	//set up routing with react-router
@@ -47,14 +52,14 @@ app.get('*', function (req, res) {
 		} else if (redirectLocation) {
 			res.redirect(302, redirectLocation.pathname + redirectLocation.search)
 		} else if (renderProps) {
-			//render up our html with react and props
+			//render up our html with react and props - see custom createElement func above
+			//renderProps passes down info about the route and history
 			var markup = ReactDOMServer.renderToString(
-				//createElement={createElement}
-				<RouterContext {...renderProps} />
+				<RouterContext createElement={createElement} {...renderProps} />
 			);
 			//pass rendered html out handlebars template along with props
 			//so client will have props too
-			res.render('index', {content: markup, props:JSON.stringify(props)});
+			res.render('index', {content: markup, props:JSON.stringify(serverprops)});
 
 		} else {
 			res.status(404).send('Not found')

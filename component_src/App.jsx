@@ -8,13 +8,11 @@ class App extends React.Component {
 	}
 
 	render(){
-
 		//If all's well you should see this on server & browser console
-		console.log('Hello World');
-
+		console.log('Hello Consoles');
 		return (
 			<div>
-				<div>Hello World</div>
+				<p>{this.props.message}</p>
 				<ul>
 					<li><Link to='/viewa'>Link to A</Link></li>
 					<li><Link to='/viewb'>Link to B</Link></li>

@@ -53,6 +53,8 @@
 
 	'use strict';
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _react = __webpack_require__(2);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -73,14 +75,20 @@
 	// value from APP_PROPS that we generate inline in the page's html on the server.
 	// If these props match what is used in the server render, React will see that
 	// it doesn't need to generate any DOM and the page will load faster
-	
 	//look at index.hbs to see where props come from
-	var props = window.APP_PROPS;
+	
+	var serverprops = window.APP_PROPS;
+	
+	// default behavior
+	function createElement(Component, props) {
+		// make sure you pass all the props in!
+		return _react2.default.createElement(Component, _extends({}, props, serverprops));
+	}
 	
 	//Render application in browser
 	_reactDom2.default.render(_react2.default.createElement(
 		_reactRouter.Router,
-		{ history: _reactRouter.browserHistory },
+		{ createElement: createElement, history: _reactRouter.browserHistory },
 		_Routes2.default
 	), document.getElementById('app'));
 
@@ -19620,11 +19628,9 @@
 		_createClass(App, [{
 			key: 'render',
 			value: function render() {
-	
 				//If all's well you should see this on server & browser console
-				console.log('Hello World');
-	
-				return _react2.default.createElement('div', null, _react2.default.createElement('div', null, 'Hello World'), _react2.default.createElement('ul', null, _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { to: '/viewa' }, 'Link to A')), _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { to: '/viewb' }, 'Link to B'))), this.props.children);
+				console.log('Hello Consoles');
+				return _react2.default.createElement('div', null, _react2.default.createElement('p', null, this.props.message), _react2.default.createElement('ul', null, _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { to: '/viewa' }, 'Link to A')), _react2.default.createElement('li', null, _react2.default.createElement(_reactRouter.Link, { to: '/viewb' }, 'Link to B'))), this.props.children);
 			}
 		}]);
 	

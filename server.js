@@ -1,5 +1,7 @@
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _reactRouter = require('react-router');
 
 var _Routes = require('./components/Routes.js');
@@ -32,8 +34,17 @@ app.get('*', function (req, res) {
 	GLOBAL.navigator = { userAgent: req.headers['user-agent'] };
 
 	//gather all props that'll be passed down into react both server and client side here
-	var props = {
+	var serverprops = {
+		message: 'Hello World',
 		userAgent: req.headers['user-agent'] //useful for some components to render
+	};
+
+	//use this function to pass in props to
+	//the components being rendered in the routes.
+	var createElement = function createElement(Component, props) {
+		// make sure you pass all the props in!
+		console.log('custom create element');
+		return React.createElement(Component, _extends({}, props, serverprops));
 	};
 
 	//set up routing with react-router
@@ -43,13 +54,12 @@ app.get('*', function (req, res) {
 		} else if (redirectLocation) {
 			res.redirect(302, redirectLocation.pathname + redirectLocation.search);
 		} else if (renderProps) {
-			//render up our html with react and props
-			var markup = ReactDOMServer.renderToString(
-			//createElement={createElement}
-			React.createElement(_reactRouter.RouterContext, renderProps));
+			//render up our html with react and props - see custom createElement func above
+			//renderProps passes down info about the route and history
+			var markup = ReactDOMServer.renderToString(React.createElement(_reactRouter.RouterContext, _extends({ createElement: createElement }, renderProps)));
 			//pass rendered html out handlebars template along with props
 			//so client will have props too
-			res.render('index', { content: markup, props: JSON.stringify(props) });
+			res.render('index', { content: markup, props: JSON.stringify(serverprops) });
 		} else {
 			res.status(404).send('Not found');
 		}
