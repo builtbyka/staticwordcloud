@@ -41,8 +41,8 @@ module.exports = {
 			"NODE_ENV": JSON.stringify("development")
 		},
 		__DEV__:false
-	}),
+	})]
 		//new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), //prevents build getting bloated with momentjs local plugins
-		new webpack.optimize.DedupePlugin()] //remove duplicated packages
+		//new webpack.optimize.DedupePlugin()] //remove duplicated packages
 	//new webpack.optimize.UglifyJsPlugin()] //minify
 };
