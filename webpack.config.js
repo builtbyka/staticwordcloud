@@ -8,9 +8,13 @@ var definePlugin = new webpack.DefinePlugin({
 
 module.exports = {
 	devtool: 'source-map',
-	entry: [
-		'./browser.jsx'
-	],
+    
+    entry: [
+    'webpack-dev-server/client?http://localhost:3000', // WebpackDevServer host and port
+    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
+    './component_src/browser.jsx' // Your appʼs entry point
+    ],
+
 	resolve: {
 		alias: {
 			'react': path.join(__dirname, 'node_modules', 'react')
@@ -20,15 +24,15 @@ module.exports = {
 		'fallback': path.join(__dirname, 'node_modules')
 	},
 	output: {
-		path: path.join(__dirname, 'app', 'js'),
+		path: path.join(__dirname, 'app'),
 		filename: 'app.js'
 	},
 	module: {
 		loaders: [{
 			test: /\.jsx?$/,
-			loaders: ['babel'],
+			loaders: ['react-hot','babel'],
 			exclude: [node_modules],
-			include: path.join(__dirname, '')
+			include: path.join(__dirname, 'component_src')
 		},{
 			test: /\.css$/,
 			loaders: ['style', 'css']
@@ -41,7 +45,8 @@ module.exports = {
 			"NODE_ENV": JSON.stringify("development")
 		},
 		__DEV__:false
-	})]
+	}),
+    new webpack.HotModuleReplacementPlugin()]
 		//new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), //prevents build getting bloated with momentjs local plugins
 		//new webpack.optimize.DedupePlugin()] //remove duplicated packages
 	//new webpack.optimize.UglifyJsPlugin()] //minify

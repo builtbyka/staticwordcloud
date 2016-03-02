@@ -4,3 +4,4 @@ node_modules/
 .idea/
 *.map
 .vscode/
+app/app.js
