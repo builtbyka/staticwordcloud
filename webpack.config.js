@@ -10,9 +10,7 @@ module.exports = {
 	devtool: 'source-map',
     
     entry: [
-    'webpack-dev-server/client?http://localhost:3000', // WebpackDevServer host and port
-    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-    './component_src/browser.jsx' // Your appʼs entry point
+          './component_src/browser.jsx' // Your appʼs entry point
     ],
 
 	resolve: {
@@ -44,9 +42,9 @@ module.exports = {
 			//set to production for build
 			"NODE_ENV": JSON.stringify("development")
 		},
-		__DEV__:false
-	}),
-    new webpack.HotModuleReplacementPlugin()]
+		__DEV__:true
+	})]
+    //new webpack.HotModuleReplacementPlugin()]
 		//new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), //prevents build getting bloated with momentjs local plugins
 		//new webpack.optimize.DedupePlugin()] //remove duplicated packages
 	//new webpack.optimize.UglifyJsPlugin()] //minify
