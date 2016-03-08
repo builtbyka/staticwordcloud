@@ -1,4 +1,4 @@
-#React Clientside boilerplate with routing and hot loading.
+#React Clientside boilerplate with hot loading.
 
 
 

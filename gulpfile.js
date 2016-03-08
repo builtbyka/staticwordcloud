@@ -42,8 +42,7 @@ gulp.task('sass', function () {
 gulp.task('dev', function(){
     bs.init({server: {
                 baseDir: './app/',
-                index: 'index.html',
-                middleware: [ historyApiFallback() ]
+                index: 'index.html'
             }
         }); 
         

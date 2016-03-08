@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router';
+
 
 class App extends React.Component {
 
@@ -8,16 +8,9 @@ class App extends React.Component {
 	}
 
 	render(){
-
-
 		return (
 			<div>
-                <h1>Simple client only app with routing and hot loading</h1>
-				<ul>
-					<li><Link to='/viewa'>Link to A</Link></li>
-					<li><Link to='/viewb'>Link to B</Link></li>
-				</ul>
-				{this.props.children}
+                  <p>hello world!</p>
 			</div>
 		)
 	}

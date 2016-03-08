@@ -1,17 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Routes from './Routes.jsx';
-import {Router, Route, browserHistory} from 'react-router';
-
-
-// default behavior
-function createElement(Component, props) {
-	// make sure you pass all the props in!
-	return <Component {...props} />
-}
+import App from './App.jsx';
 
 
 //Render application in browser
-ReactDOM.render(<Router createElement={createElement} history={browserHistory}>
-	{Routes}
-</Router>, document.getElementById('app'))
+ReactDOM.render(<App />, document.getElementById('app'))
