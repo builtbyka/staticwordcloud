@@ -8,8 +8,8 @@ class TextInput extends React.Component {
               
 		return (
             <div>
-                <input type="text">
-                <input type="submit" value="Submit">
+                <input type="text" />
+                <input type="submit" value="Submit" />
             </div>
 		)
 	}
