@@ -12,7 +12,7 @@ class App extends React.Component {
 			<div>
                   <Title title="Hi there"/>
                   <Title title="Bye there"/>
-                  <p>hello John</p>
+                  <p>hello John & KA</p>
                   <Carrots/>
                   <Test2/>
                   <Image image="https://upload.wikimedia.org/wikipedia/commons/5/51/Mandarin.duck.arp.jpg" caption="This is a duck"/>
