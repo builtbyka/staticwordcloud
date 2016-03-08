@@ -3,13 +3,21 @@ import React from 'react';
 
 class TextInput extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.addStudent = this.addStudent.bind(this);
+    }
+    
+    addStudent(){
+       this.props.addStudent(this.refs.student);
+    }
 
 	render(){
               
 		return (
             <div>
-                <input type="text" />
-                <input type="submit" value="Submit" />
+                <input type="text" ref="student" />
+                <button onClick={this.addStudent} >Add Student</button>
             </div>
 		)
 	}

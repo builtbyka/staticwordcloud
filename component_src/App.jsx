@@ -15,6 +15,12 @@ class App extends React.Component {
             names : ["John", "KA", "Elina"]
         };
     }
+    
+    addStudent(studentName) {
+        let namesCopy = this.state.names.slice(0);
+        namesCopy.push(studentName);
+        this.setState({names:namesCopy});
+    }
 
 	render(){
 		return (
