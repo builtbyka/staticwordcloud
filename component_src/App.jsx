@@ -5,6 +5,7 @@ import Title from './Title.jsx';
 import Image from './Image.jsx';
 import Studentlist from './Studentlist.jsx';
 import Tablelist from './Table.jsx';
+import TextInput from './TextInput.jsx';
 
 class App extends React.Component {
     
@@ -18,6 +19,7 @@ class App extends React.Component {
 	render(){
 		return (
 			<div>
+                  <TextInput/>
                   <Title title="Hi there"/>
                   <Title title="Bye there"/>
                   <p>hello John & KA</p>
