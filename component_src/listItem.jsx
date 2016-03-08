@@ -7,7 +7,7 @@ class ListItem extends React.Component {
 	render(){
               
 		return (
-            <li>{this.props.listitem}</li>
+            <li>{this.props.listitem.name} ({this.props.listitem.count})</li>
 		)
 	}
 }
