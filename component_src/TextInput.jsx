@@ -9,7 +9,7 @@ class TextInput extends React.Component {
     }
     
     addStudent(){
-       this.props.addStudent(this.refs.student);
+       this.props.addStudent(this.refs.student.value);
     }
 
 	render(){

@@ -1,5 +1,6 @@
 import React from 'react';
 import TableItem from './tableItem.jsx';
+import TableClose from './TableClose.jsx';
 
 class Tablelist extends React.Component {
 
@@ -10,7 +11,13 @@ class Tablelist extends React.Component {
             name => {
                 return(
                     <TableItem tableitem={name}/>
-                )
+            }
+        )
+        
+        let tableAmount = this.props.tableAmount.map(
+            amount => {
+                return(
+                    <TableClose tableamount={amount}/>
             }
         )
         
@@ -18,6 +25,7 @@ class Tablelist extends React.Component {
 		return (
             <table>
                {tableNames} 
+               {tableAmount}
             </table>
 		)
 	}

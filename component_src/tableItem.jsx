@@ -7,7 +7,7 @@ class TableItem extends React.Component {
 	render(){
               
 		return (
-            <tr><td>{this.props.tableitem}</td></tr>
+            <tr><td>{this.props.tableitem}</td>
 		)
 	}
 }
