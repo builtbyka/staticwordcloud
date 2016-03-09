@@ -6,13 +6,17 @@ import Image from './Image.jsx';
 import Studentlist from './Studentlist.jsx';
 import Tablelist from './Table.jsx';
 import TextInput from './TextInput.jsx';
+import {TagCloud, DefaultRenderer} from "react-tagcloud";
+
+
 
 class App extends React.Component {
     
     constructor(props){
         super(props);
         this.state = {
-            names : ["John", "KA", "Elina"]
+            names : ["John", "KA", "Elina"],
+            tags:[{value:'foo',count:10},{value:'bar',count:10}]
         };
     }
     
@@ -33,6 +37,9 @@ class App extends React.Component {
                   <Test2/>
                   <Studentlist studentNames={this.state.names}/>
                   <Tablelist tableNames={this.state.names}/>
+                                 <TagCloud minSize={10} 
+                        maxSize={50}
+                        tags={this.state.tags}  />
             </div>
             
 		)
