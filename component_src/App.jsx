@@ -44,11 +44,19 @@ class App extends React.Component {
         }
         
         this.setState({names:namesCopy});
-       
+      
+        
         
     }
 
 	render(){
+        
+        let namesCopy = this.state.names.slice(0);
+        
+        namesCopy.forEach(n => {
+            n.value = n.name;
+        })
+        
 		return (
 			<div>
                   <TextInput addStudent={this.addStudent}/>
@@ -58,9 +66,9 @@ class App extends React.Component {
                   <Carrots/>
                   <Test2/>
                   <Studentlist studentNames={this.state.names}/>
-                                 <TagCloud minSize={10} 
+                   <TagCloud minSize={10} 
                         maxSize={50}
-                        tags={this.state.tags}  />
+                        tags={namesCopy}  />
             </div>
             
 		)
