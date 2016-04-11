@@ -1,13 +1,9 @@
 import React from 'react';
-import Carrots from './test.jsx';
-import Test2 from './Test2.jsx';
 import Title from './Title.jsx';
 import Image from './Image.jsx';
 import Studentlist from './Studentlist.jsx';
-
 import TextInput from './TextInput.jsx';
 import {TagCloud, DefaultRenderer} from "react-tagcloud";
-
 
 
 class App extends React.Component {
@@ -17,9 +13,10 @@ class App extends React.Component {
         this.state = {
 
             names : [
-                {name:"John",count:1},
+                {name:"Gloria",count:1},
                 {name:"KA",count:3},
-                {name:"Elina", count:2}
+                {name:"Gary", count:2},
+                {name:"Tony", count:1}
                 ]
         };
         
@@ -60,11 +57,6 @@ class App extends React.Component {
 		return (
 			<div>
                   <TextInput addStudent={this.addStudent}/>
-                  <Title title="Hi there"/>
-                  <Title title="Bye there"/>
-                  <p>hello John and KA</p>
-                  <Carrots/>
-                  <Test2/>
                   <Studentlist studentNames={this.state.names}/>
                    <TagCloud minSize={10} 
                         maxSize={50}
